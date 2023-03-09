@@ -1,18 +1,18 @@
 import time
 from turtle import Turtle, Screen
 from game_obj import *
+# player livees
+lives = 5
+# gamee pace
+pace = 5
+# creating our game objects
 my_screen = Screen()
 my_screen.bgcolor("black")
 my_screen.tracer(0)
-lives = 5
-
-my_screen.setup(width=600,height=700)
-pace = 5
+my_screen.setup(width=600, height=700)
 ball = Ball()
-
 setup = ArrangedBlocks(ball)
-setup.arrangeblocks(600,700)
-# setup.block_list[5].goto(50,50)
+setup.arrangeblocks(600, 700)
 pad = Paddle(ball)
 game_is_on = True
 block_list = []
@@ -41,12 +41,11 @@ while game_is_on:
             game_over = GameOver()
             break
 
-
     if len(setup.block_list) < 1:
         setup.level += 1
-        setup.arrangeblocks(600,700)
+        setup.arrangeblocks(600, 700)
 
     my_screen.listen()
-    my_screen.onkey(key="Right",fun=pad.move_right)
-    my_screen.onkey(key="Left",fun=pad.move_left)
+    my_screen.onkey(key="Right", fun=pad.move_right)
+    my_screen.onkey(key="Left", fun=pad.move_left)
 my_screen.mainloop()

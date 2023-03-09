@@ -1,8 +1,8 @@
 import random
 from turtle import Turtle, Screen
-
+# variable for ball movement speed per refresh
 pace = 0
-
+# paddle class
 class Paddle(Turtle):
     def __init__(self, ball):
         super().__init__()
@@ -20,7 +20,7 @@ class Paddle(Turtle):
     def move_left(self):
         if self.xcor() - 60 > -280:
             self.backward(20)
-
+    # detects contact with the paddle
     def contact(self):
         if self.ycor() + 15 >= self.ball.ycor() >=self.ycor():
             if self.xcor() - 60 <= self.ball.xcor() <= self.xcor():
@@ -36,6 +36,7 @@ class Paddle(Turtle):
 
 
 class Blocks(Turtle):
+    # createes the block
     def __init__(self):
         super().__init__()
         self.speed("fastest")
@@ -46,13 +47,13 @@ class Blocks(Turtle):
 
 color = ["red", "yellow", "purple", "green", "blue", "pink", "brown"]
 
-
+# arrannges the blocks
 class ArrangedBlocks():
     def __init__(self, ball):
         self.block_list = []
         self.ball = ball
         self.level = 1
-
+    # arranges the blocks
     def arrangeblocks(self, screen_width, screen_height):
 
         x = -(screen_width / 2) + 40
@@ -69,7 +70,7 @@ class ArrangedBlocks():
             if x > (screen_width / 2) - 40:
                 x = -(screen_width / 2) + 40
                 y -= 20
-
+    # deteects contact with the blocks on the horizontal axis(top annd bottom)
     def block_horizontal_contact(self):
         global speed
         for block in self.block_list:
@@ -94,7 +95,7 @@ class ArrangedBlocks():
                     if self.ball.speed_ > 0:
                         self.ball.speed_ -= 0.001
                     return True
-
+    # detects contact with the block on the vertical axis(left and right)
     def block_side_contact(self):
         global speed
         for block in self.block_list:
@@ -114,7 +115,7 @@ class ArrangedBlocks():
                     if self.ball.speed_ > 0:
                         self.ball.speed_ -= 0.001
 
-
+# the ball class
 class Ball(Turtle):
     def __init__(self):
         super().__init__()
@@ -126,7 +127,7 @@ class Ball(Turtle):
         self.setheading(random.randint(45, 150))
         self.speed_ = 0.01
         self.speed(0)
-
+    # the ball bouncing pysics
     def ball_physics(self):
         direction = self.heading()
         bounce_angle = 360 - direction
@@ -139,6 +140,7 @@ class Ball(Turtle):
 
 
 
+# gameeover text
 class GameOver(Turtle):
     def __init__(self):
         super().__init__()
